@@ -18,7 +18,7 @@ namespace ArePeopleWearing.Forecasts.Services
         }
 
         public async Task<Forecast> GetForecast(float latitude, float longitude)
-        {
+        {     
             return this._responseMapper.MapResponse(await _forecastIOClient.GetForecastResponse(latitude, longitude));
         }
     }

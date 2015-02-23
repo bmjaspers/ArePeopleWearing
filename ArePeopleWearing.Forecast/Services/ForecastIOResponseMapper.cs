@@ -12,10 +12,13 @@ namespace ArePeopleWearing.Forecasts.Services
         public Forecast MapResponse(ForecastIOResponse response)
         {
             var forecast = new Forecast();
-            forecast.MinimumTemperature = (double)(response.daily.data.ElementAt(0).temperatureMin);
-            forecast.MaximumTemperature = (double)(response.daily.data.ElementAt(0).temperatureMax);
-            forecast.PrecipitationProbability = (double)(response.daily.data.ElementAt(0).precipProbability);
-            forecast.CloudCover = (double)(response.daily.data.ElementAt(0).cloudCover);
+            forecast.Latitude = response.latitude;
+            forecast.Longitude = response.longitude;
+            forecast.MinimumTemperature = response.daily.data.ElementAt(0).temperatureMin;
+            forecast.MaximumTemperature = response.daily.data.ElementAt(0).temperatureMax;
+            forecast.PrecipitationProbability = response.daily.data.ElementAt(0).precipProbability;
+            forecast.CloudCover = response.daily.data.ElementAt(0).cloudCover;
+            forecast.Date = DateTime.Now;
 
             return forecast;
         }

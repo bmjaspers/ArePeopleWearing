@@ -21,6 +21,8 @@ namespace ArePeopleWearing.Forecasts.Tests.Services.ForecastIOServiceTests
             var client = new Mock<ForecastIOClient>("apikey");
 
             var response = new ForecastIOResponse();
+            response.latitude = -39.801f;
+            response.longitude = 87.333f;
             response.daily = new Daily();
             response.daily.data = new List<DailyForecast>();
             response.daily.data.Add(
@@ -50,6 +52,8 @@ namespace ArePeopleWearing.Forecasts.Tests.Services.ForecastIOServiceTests
             Assert.AreEqual(0.3f, forecast.PrecipitationProbability);
             Assert.AreEqual(0.3f, forecast.CloudCover);
             Assert.AreEqual(50.0f, forecast.MaximumTemperature);
+            Assert.AreEqual(-39.801f, forecast.Latitude);
+            Assert.AreEqual(87.333f, forecast.Longitude);
         }
     }
 }

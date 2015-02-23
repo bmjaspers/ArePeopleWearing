@@ -14,39 +14,39 @@ namespace ArePeopleWearing.Controllers
     public class BeingWornController : ApiController
     {
         private ClothingItemFactory _clothingItemFactory;
-        private IForecastService _forecastService;
+        private ForecastRepository _forecastRepository;
 
-        public BeingWornController(ClothingItemFactory clothingItemFactory, IForecastService forecastService)
+        public BeingWornController(ClothingItemFactory clothingItemFactory, ForecastRepository forecastRepository)
         {
             _clothingItemFactory = clothingItemFactory;
-            _forecastService = forecastService;
+            _forecastRepository = forecastRepository;
         }
 
         public async Task<IHttpActionResult> Get(string itemName, string latlng)
         {
             if (string.IsNullOrEmpty(itemName))
             {
-                return this.BadRequest("The item name must not be empty");
+                return BadRequest("The item name must not be empty");
             }
 
             if (string.IsNullOrEmpty(latlng) || !(latlng.Contains(",")))
             {
-                return this.BadRequest("The coordinates could not be parsed");
+                return BadRequest("The coordinates could not be parsed");
             }
 
             float lat, lng;
 
             if (!ParseLatLong(latlng, out lat, out lng))
             {
-                return this.BadRequest("The coordinates could not be parsed");
+                return BadRequest("The coordinates could not be parsed");
             }
 
-            var clothingItem = this._clothingItemFactory.GetClothingItem(GetClothingItemTypeFromString(itemName));
+            var clothingItem = _clothingItemFactory.GetClothingItem(GetClothingItemTypeFromString(itemName));
 
-            var forecast = await this._forecastService.GetForecast(lat, lng);
+            var forecast = await _forecastRepository.GetForecast(lat, lng);
             var isBeingWorn = clothingItem.IsBeingWorn(forecast);
 
-            return this.Ok(isBeingWorn);    
+            return Ok(isBeingWorn);    
         }
 
         private ClothingItemType GetClothingItemTypeFromString(string itemName)

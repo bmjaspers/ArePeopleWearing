@@ -23,19 +23,21 @@ namespace ArePeopleWearing.Tests.BeingWornControllerTests
         {
             var clothingItemFactory = new ClothingItemFactory();
             var forecastService = new Mock<IForecastService>();
+            var forecastContext = new Mock<ForecastContext>();
+            var forecastRepository = new Mock<ForecastRepository>(forecastContext.Object, forecastService.Object);
             var forecast = new Forecast()
             {
-                MaximumTemperature = 80.0,
-                MinimumTemperature = 73.0,
-                CloudCover = 0.3,
-                PrecipitationProbability = 0.3
+                MaximumTemperature = 80.0f,
+                MinimumTemperature = 73.0f,
+                CloudCover = 0.3f,
+                PrecipitationProbability = 0.3f
             };
 
             var task = Task.FromResult(forecast);
 
-            forecastService.Setup(s => s.GetForecast(-39.801f, 87.302f)).Returns(task);
+            forecastRepository.Setup(s => s.GetForecast(-39.801f, 87.302f)).Returns(task);
 
-            _controller = new BeingWornController(clothingItemFactory, forecastService.Object);
+            _controller = new BeingWornController(clothingItemFactory, forecastRepository.Object);
         }
 
         [Test]

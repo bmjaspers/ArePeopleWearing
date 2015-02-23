@@ -16,48 +16,48 @@ namespace ArePeopleWearing.Clothing.Tests.SundressTests
         {
                 MinimumTemperature = 76,
                 MaximumTemperature = 90,
-                PrecipitationProbability = 0.15,
-                CloudCover = 0.05
+                PrecipitationProbability = 0.15f,
+                CloudCover = 0.05f
         };
 
         private static Forecast _warmOvercastAndNoRain = new Forecast()
         {
                 MinimumTemperature = 76,
                 MaximumTemperature = 90,
-                PrecipitationProbability = 0.15,
-                CloudCover = 0.7
+                PrecipitationProbability = 0.15f,
+                CloudCover = 0.7f
          };
 
         private static Forecast _warmOvercastAndRainy = new Forecast()
         {
                 MinimumTemperature = 76,
                 MaximumTemperature = 90,
-                PrecipitationProbability = 0.7,
-                CloudCover = 0.7
+                PrecipitationProbability = 0.7f,
+                CloudCover = 0.7f
         };
 
         private static Forecast _coldClearAndNoRain = new Forecast()
         {
             MinimumTemperature = 20,
             MaximumTemperature = 50,
-            PrecipitationProbability = 0.7,
-            CloudCover = 0.15
+            PrecipitationProbability = 0.7f,
+            CloudCover = 0.15f
         };
 
         private static Forecast _coldOvercastAndNoRain = new Forecast()
         {
             MinimumTemperature = 20,
             MaximumTemperature = 50,
-            PrecipitationProbability = 0.15,
-            CloudCover = 0.41
+            PrecipitationProbability = 0.15f,
+            CloudCover = 0.41f
         };
 
         private static Forecast _coldOvercastAndRainy = new Forecast()
         {
             MinimumTemperature = 20,
             MaximumTemperature = 50,
-            PrecipitationProbability = 0.7,
-            CloudCover = 0.41
+            PrecipitationProbability = 0.7f,
+            CloudCover = 0.41f
         };
 
         private static Forecast[] _rainyForecasts = { _warmOvercastAndRainy, _coldOvercastAndRainy };
