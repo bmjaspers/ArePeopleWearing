@@ -16,7 +16,10 @@ namespace ArePeopleWearing
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{itemName}/{latlng}"
+                routeTemplate: "orarentthey",
+                defaults: new {
+                    controller = "ClothingItemController"
+                }
             );
         }
     }

@@ -11,18 +11,20 @@ using System.Web.Http;
 
 namespace ArePeopleWearing.Controllers
 {
-    public class BeingWornController : ApiController
+    public class ClothingItemController : ApiController
     {
         private ClothingItemFactory _clothingItemFactory;
         private ForecastRepository _forecastRepository;
 
-        public BeingWornController(ClothingItemFactory clothingItemFactory, ForecastRepository forecastRepository)
+        public ClothingItemController(ClothingItemFactory clothingItemFactory, ForecastRepository forecastRepository)
         {
             _clothingItemFactory = clothingItemFactory;
             _forecastRepository = forecastRepository;
         }
 
-        public async Task<IHttpActionResult> Get(string itemName, string latlng)
+        [Route("/{itemName:string}/{latlng:string}")]
+        [HttpGet]
+        public async Task<IHttpActionResult> IsBeingWorn(string itemName, string latlng)
         {
             if (string.IsNullOrEmpty(itemName))
             {

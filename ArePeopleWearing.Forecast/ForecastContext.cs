@@ -14,6 +14,6 @@ namespace ArePeopleWearing.Forecasts
         {
         }
 
-        public DbSet<Forecast> Forecasts { get; set; }
+        public virtual DbSet<Forecast> Forecasts { get; set; }
     }
 }
