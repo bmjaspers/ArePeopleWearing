@@ -22,9 +22,9 @@ namespace ArePeopleWearing.Controllers
             _forecastRepository = forecastRepository;
         }
 
-        [Route("/{itemName:string}/{latlng:string}")]
+        [Route("orarentthey/{itemName}/{latlng}")]
         [HttpGet]
-        public async Task<IHttpActionResult> IsBeingWorn(string itemName, string latlng)
+        public async Task<IHttpActionResult> Wearing(string itemName, string latlng)
         {
             if (string.IsNullOrEmpty(itemName))
             {
@@ -48,7 +48,7 @@ namespace ArePeopleWearing.Controllers
             var forecast = await _forecastRepository.GetForecast(lat, lng);
             var isBeingWorn = clothingItem.IsBeingWorn(forecast);
 
-            return Ok(isBeingWorn);    
+            return Ok(Enum.GetName(typeof(WearingClothingResult), isBeingWorn));    
         }
 
         private ClothingItemType GetClothingItemTypeFromString(string itemName)
