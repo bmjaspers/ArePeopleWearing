@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ArePeopleWearing.App_Start;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,7 +14,8 @@ namespace ArePeopleWearing
         protected void Application_Start()
         {
             UnityConfig.RegisterComponents();
-            GlobalConfiguration.Configure(WebApiConfig.Register);
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
+            GlobalConfiguration.Configure(WebApiConfig.Register);        
         }
     }
 }
